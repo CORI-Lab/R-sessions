@@ -18,12 +18,12 @@ Materials from our workshops are various online tutorials & advice from these so
 * [STAT545 @ UBC](http://stat545.com/): Data wrangling, exploration, and analysis with R by [Jenny Bryan](https://github.com/jennybc)
 
 ---
-Prerequisites
+**Prerequisites**
 
 Please install R and RStudio, click on this [link](http://stat545.com/block000_r-rstudio-install.html) for instructions from STAT454
 
 ---
-Topics
+**Topics**
 
 Day 1| Wednesday 28th Feb: Getting started ([PDF slides]())
 
