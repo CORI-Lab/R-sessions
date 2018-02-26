@@ -19,13 +19,11 @@ Materials from our workshops are various online tutorials & advice from these so
 
 ---
 Prerequisites
----
 
 Please install R and RStudio, click on this [link](http://stat545.com/block000_r-rstudio-install.html) for instructions from STAT454
 
 ---
 Topics
----
 
 Day 1| Wednesday 28th Feb: Getting started ([PDF slides]())
 
