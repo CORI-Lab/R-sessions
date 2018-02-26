@@ -18,27 +18,32 @@ Materials from our workshops are various online tutorials & advice from these so
 * [STAT545 @ UBC](http://stat545.com/): Data wrangling, exploration, and analysis with R by [Jenny Bryan](https://github.com/jennybc)
 
 
-> Prerequists
+> Prerequisites
 
-Install R and RStudio, click on this link for instructions from STAT454
+Please install R and RStudio, click on this [link](http://stat545.com/block000_r-rstudio-install.html) for instructions from STAT454
 
-Day 1| Wednesday 28th Feb:
-Do this before:
+---
 
-● Reinforcement of objective-driven and organized data science: what to do before you
+###Topics:
+
+Day 1| Wednesday 28th Feb: Getting started
+
+* Reinforcement of objective-driven and organized data science: what to do before you
 even have your data
-o Objectives and ‘working backwards’
-o Database naming and structure
-o File naming and version control
-● RStudio orientation & best practices for organizing your analysis [workspace, R projects].
-● Documenting your analysis: quick intro into RMarkdown
-● Creating variables
-● Data types in R and coding basics
-● What is a data frame, creating one & getting basic info about it
-Session 2: Exploratory Data Analysis | Intro to dplyr & ggplot (3 hrs)
-● Finding, transforming & extracting data
-● Getting summary statistics & other calculations from a dataset
-● Adding new variables to your dataset
-● Importing data (CSV)
-● Ggplot basics
-● Missing values & outliers
+* Objectives and ‘working backwards’
+* Database naming and structure
+* File naming and version control
+* RStudio orientation & best practices for organizing your analysis [workspace, R projects].
+* Documenting your analysis: quick intro into RMarkdown
+* Creating variables
+* Data types in R and coding basics
+* What is a data frame, creating one & getting basic info about it
+
+Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to dplyr & ggplot.  
+
+* Importing data
+* Finding, transforming & extracting data
+* Getting summary statistics & other calculations from a dataset
+* Adding new variables to your dataset
+* Ggplot basics
+* Missing values & outliers
