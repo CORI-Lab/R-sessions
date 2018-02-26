@@ -23,10 +23,10 @@ Materials from our workshops are various online tutorials & advice from these so
 Please install R and RStudio, click on this [link](http://stat545.com/block000_r-rstudio-install.html) for instructions from STAT454
 
 ---
+Topics
+---
 
-###Topics:
-
-Day 1| Wednesday 28th Feb: Getting started
+Day 1| Wednesday 28th Feb: Getting started ([PDF slides]())
 
 * Reinforcement of objective-driven and organized data science: what to do before you
 even have your data
@@ -39,7 +39,7 @@ even have your data
 * Data types in R and coding basics
 * What is a data frame, creating one & getting basic info about it
 
-Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to dplyr & ggplot.  
+Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to dplyr & ggplot ([PDF slides]()).  
 
 * Importing data
 * Finding, transforming & extracting data
@@ -47,3 +47,7 @@ Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to dplyr & ggplot.
 * Adding new variables to your dataset
 * Ggplot basics
 * Missing values & outliers
+
+----
+Useful resources
+---
