@@ -1,9 +1,6 @@
 
 ---
-title: "R beginner workshop - Pacific Science Enterprise Centre (PSEC) Data Management and Analysis group"
-author: Ania Posacka & Evan Henderson
-date: "February 26, 2018"
-This repo is for materials related to weekly R meetups for CORI group
+R beginner workshop - Pacific Science Enterprise Centre (PSEC) Data Management and Analysis group
 ---
 
 
