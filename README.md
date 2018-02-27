@@ -18,14 +18,14 @@ Materials from our workshops are various online tutorials & advice from these so
 * [STAT545 @ UBC](http://stat545.com/): Data wrangling, exploration, and analysis with R by [Jenny Bryan](https://github.com/jennybc)
 
 ---
-**Prerequisites**
+**Before the workshop**
 
 Please install R and RStudio, click on this [link](http://stat545.com/block000_r-rstudio-install.html) for instructions from STAT454
 
 ---
 **Topics**
 
-Day 1| Wednesday 28th Feb: Getting started ([PDF slides]())
+Day 1| Wednesday 28th Feb: Getting started ([PDF slides](https://github.com/aposacka/PSEC-R-workshops/tree/master/Slides))
 
 * Reinforcement of objective-driven and organized data science: what to do before you
 even have your data
@@ -33,10 +33,9 @@ even have your data
 * Database naming and structure
 * File naming and version control
 * [RStudio orientation & best practices for organizing your analysis [workspace, R projects]](http://stat545.com/block002_hello-r-workspace-wd-project.html).
-* [Documenting your analysis: quick intro into RMarkdown]()
-* [Creating variables](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
-* [Data types in R and coding basics](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
+* [Coding basics](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
 * [What is a data frame, creating one & getting basic info about it](http://stat545.com/block006_care-feeding-data.html)
+* [Documenting your analysis: quick intro into RMarkdown](https://rmarkdown.rstudio.com/lesson-1.html)
 
 Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to [dplyr & ggplot](https://www.tidyverse.org/) ([PDF slides]()).  
 
