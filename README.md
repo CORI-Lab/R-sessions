@@ -50,5 +50,4 @@ Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to [dplyr & ggplot](h
 Useful resources
 ---
 
-
----
+Comming soon :)
