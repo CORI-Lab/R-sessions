@@ -216,6 +216,17 @@ dat%>%
 #-------------------BOXPLOTS--------------------------------------------------
 
 p2 <- dat%>%
+  ggplot(aes(x=continent,y=gdpPercap,color=continent))+
+  geom_boxplot()+
+  geom_jitter(alpha=1/4)+
+  coord_flip()+
+  theme_bw()+
+  labs(title="GDP per Capita at different continents")+
+  xlab("Continent")+
+  ylab("GDP per Capita")
+
+
+p2 <- dat%>%
 #  filter(Macro %in% c("P:C","N:C","S:C","C:N"))%>%
   ggplot(aes(x = continent,y = gdpPercap,color = continent))+
   geom_boxplot()+
