@@ -37,17 +37,22 @@ even have your data
 * [What is a data frame, creating one & getting basic info about it](http://stat545.com/block006_care-feeding-data.html)
 * [Documenting your analysis: quick intro into RMarkdown](https://rmarkdown.rstudio.com/lesson-1.html)
 
-Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to [dplyr & ggplot](https://www.tidyverse.org/) ([PDF slides]()).  
+Day 2 | Friday 2nd March: Exploratory Data Analysis, Intro to [dplyr & ggplot](https://www.tidyverse.org/) ([Day2 R script](https://github.com/OPRP-Lab/PSEC-R-workshops/blob/master/Scripts/02_day2-dplyr-ggplot2.R)).  
 
 * Importing data
 * Finding, transforming & extracting data
 * Getting summary statistics & other calculations from a dataset
 * Adding new variables to your dataset
 * Basics in graph creation with [ggplot2](http://ggplot2.tidyverse.org/)
-* Missing values & outliers
 
 ---
-Useful resources
+Useful resources, local and remote places to learn R
 ---
 
-Comming soon :)
+* [ECOSCOPE R workshops @ UBC](http://ecoscope.ubc.ca/events/)
+* [R Ladies Vancouver (R workshops and talks)](https://www.meetup.com/R-Ladies-Vancouver/)
+* [Coursera: R for statistics](https://www.coursera.org/specializations/statistics)
+* [Free intro into R by Datacamp](https://www.datacamp.com/courses/free-introduction-to-r)
+* [R for Ecology by Data Carpentry](http://www.datacarpentry.org/R-ecology-lesson/) by [Data Carpentry](http://www.datacarpentry.org/)
+* [R for Data Science](http://r4ds.had.co.nz/introduction.html) by [Hadley Wickham](http://hadley.nz/) and [Garret Grolemund](https://www.datacamp.com/instructors/garrettgrolemund)
+* [STAT545 @ UBC](http://stat545.com/): Data wrangling, exploration, and analysis with R by [Jenny Bryan](https://github.com/jennybc)
