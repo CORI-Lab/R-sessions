@@ -82,7 +82,6 @@ filter(dat, country == "Canada", year < 1985)
 filter(dat, country == "Canada", year > 2000)
 
 # how about both?
-
 filter(dat, country == "Canada", year < 1985 & year > 2000)
 
 # what about specific countries
@@ -109,15 +108,23 @@ dat %>%
 
 levels(dat$continent)
 
-#------------------MUTATE----------------------------------------------
-# BEFORE YOU ASSIGN RUN it and check
+#------------------MUTATE-----------------------------------------------------
+# When you do any of this, inspect if the outcome of your computation makes sense.
+ 
+ 
 i_need_to_know_gdp <- dat%>%
   filter(continent == "Americas")%>%
   mutate(gdp = pop * gdpPercap)
 
-summary(i_need_to_know_gdp$gdp)
+# this is one way to check, for instance, was the
+# computation only done for Americas?
+summary(i_need_to_know_gdp)
 
-# nlevels(i_need_to_know_gdp$continent)
+# Another way to do a check could be to use nlevels()
+# Note, this only works for variables that are FACTORS (not characters, but you can
+# convert them to factors)
+nlevels(i_need_to_know_gdp$continent)
+
 # an example of when this is useful: normalizing chl concentration to  volume filtered
 
 #-----------------ARRANGE---------------------------------------------
@@ -138,54 +145,62 @@ dat %>%
   arrange(desc(lifeExp))
 
 
-#----------------GROUP_BY-AND-SUMMARIZE-------------------------------
-# imagine
-# YOU have your data and you want to calculate summary statistics
-# for every station or experiment that you performed
-
-# group_by() grouping information needed for computations within the groups.
-
-# summarize() takes a dataset with n observations,
-# computes requested summaries, and returns a dataset with 1 observation.
-
-# we are typically interested in things like, mean, median, min, max, se, sd
-# number of observations
-
-# let's get this info for each continent and save it to a csv file
-se <- function(x){sd(x)/sqrt(length(x))}
-
-sum_stats <- dat %>%
-  group_by(continent) %>%
-  summarize(n = n(),
-            mean_GDP = mean(gdpPercap),
-            median_GDP = median(gdpPercap),
-            stdev_GDP = sd(gdpPercap),
-            se_GDP = se(gdpPercap),
-            min_GDP = min(gdpPercap),
-            max_GDP = max(gdpPercap))
-
-# tidy_carbs <- na.omit(tidy_carbs)
-
-write_csv(sum_stats,"01_summary-statistics-Nature-manuscript-final.csv")
-
-
-#----------------RENAME-------------------------------------------------
-
+# Want to rename one of your variables? No problem, use rename()!
+# rename(name_i_want = old_name)
 dat %>%
   rename(life_exp = lifeExp,
          gdp_percap = gdpPercap,
          gdp_percap_rel = gdpPercapRel)
 
 
+#----------------GROUP_BY-AND-SUMMARIZE-------------------------------
+# Imagine, you have your data and you want to calculate summary statistics
+# for every station or experiment that you performed. You need these verbs 
+# (i.e.commands):
+# group_by() grouping information needed for computations within the groups.
+# summarize() takes a dataset with n observations,
+# computes requested summaries, and returns a dataset with 1 observation.
+
+# we are typically interested in things like, mean, median, min, max, se, sd
+# number of observations
+
+# here is a function to calculate standard error that
+# is not in the base r 
+se <- function(x){sd(x)/sqrt(length(x))}
+
+# calculate summary statistics
+sum_stats <- dat %>% # for stuff in dat perform the calcs below and put it in sum_stats
+  group_by(continent) %>% # for every continent
+  summarize(n = n(),      # estimate the number of observations and call it n
+            mean_GDP = mean(gdpPercap), # calculate the mean and call it mean_GDP
+            median_GDP = median(gdpPercap), # calculate the median and call it median_GDP
+            stdev_GDP = sd(gdpPercap), #...you get the idea
+            se_GDP = se(gdpPercap),
+            min_GDP = min(gdpPercap),
+            max_GDP = max(gdpPercap))
+
+# save your output as a csv file
+# write_csv(R object where you saved the stats, name you want to give your csv in quotations)
+write_csv(sum_stats,"01_summary-statistics-Nature-manuscript-final.csv")
 
 
+#-----------------------------------------------------------------
+# COMBINE THE ABOVE WITH GRAPHS, VERY POWERFULL
+#-----------------------------------------------------------------
 
+# The basics. You first need to specif what data is going to be plotted
+# you call on the ggplot(), then you put the name of your data (in our 
+# case an object called dat), and you follow this by word "aes" (stands for
+# aesthetics) and in brakets what goes on x axis and what goes on y axis
 
-#-------------GRAPHS----------------------------------------------------
+ggplot(dat, aes(x = gdpPercap, y = lifeExp)) # runs this, nothing to plot yet!
 
-# The basics
-
-ggplot(dat, aes(x = gdpPercap, y = lifeExp)) # nothing to plot yet!
+# the next step is to specify what kind of a plot you would like. To do this we
+# use these things called geoms, some of the examples include:
+# geom_point() - makes scatterplots
+# geom_bar() - makes bar charts
+# geom_line() - makes line graphs
+# geom_histogram() - makes histograms
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
@@ -193,78 +208,90 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
 ggplot(gapminder, aes(x = log10(gdpPercap), y = lifeExp)) +
   geom_point()
 
+# Ok, so this is the basics of a graph, let's go back to pipe so that we can 
+# combine graphs with the dplyr verbs such as filter and select
+
+# p1 stands for plot1. Notice p1 will appear in your environment. If you ever want to 
+# check that plot again, instead of running the whole command, just type p1 and press 
+# control + ENTER 
 p1 <- dat %>%
-      ggplot(aes(x = log10(gdpPercap), y = lifeExp), color = continent) + 
-      geom_point(aes (color = continent),size = 3)
- 
+      ggplot(aes(x = log10(gdpPercap), y = lifeExp)) + 
+      geom_point(aes (color = continent),size = 3) # in the brackets you can customize anything 
+                                                   # related to points, such as their size
+                                                   # or maybe you want different continents
+                                                  # to have diff. colors? 
+p1
+#-----------------------------------
 # EXPLORATORY DATA ANALYSIS
+#-----------------------------------
+
 # WHAT IS THE MIN GPD per capita for each country in America
-dat%>%
+p2 <-dat%>%
   filter(continent == "Americas")%>% # focusing on countries in America
   group_by(country)%>% # for each country...
   summarise(min_GDP = min(gdpPercap))%>% # compute the min and max of gdp per cap
   ggplot(aes(x = min_GDP, y = reorder(country, min_GDP),color = country))+ # for info on reorder ( ) read below
-  geom_point(size = 3, stroke=1.25)+
-  theme_bw()+
+  geom_point(size = 3, stroke=1.25)+ # stroke is the thickness of the points
+  theme_bw()+ # this command is for a specific design of the graph, subsititute with theme_dark()
   theme(legend.position ="none")+ # removes the legend
-  labs(title="GDP per Capita per country in Americas")+
-  xlab("Minimum GDP per Capita")+
+  labs(title="GDP per Capita per country in Americas")+ # adds title 
+  xlab("Minimum GDP per Capita")+ # adds x axis label
   ylab("Country")
 
 
-
-#-------------------BOXPLOTS--------------------------------------------------
-
-p2 <- dat%>%
-  ggplot(aes(x=continent,y=gdpPercap,color=continent))+
+# let's try a boxplot
+p3 <- dat%>%
+  ggplot(aes(x = continent,y = gdpPercap,color = continent))+
   geom_boxplot()+
   geom_jitter(alpha=1/4)+
-  coord_flip()+
+  coord_flip()+ # if you include this command, x will be where y axis generally is
   theme_bw()+
   labs(title="GDP per Capita at different continents")+
   xlab("Continent")+
   ylab("GDP per Capita")
 
 
-p2 <- dat%>%
-#  filter(Macro %in% c("P:C","N:C","S:C","C:N"))%>%
+# let's make a jitterpoint plot. It is good practice to show
+# the data points you used in calculation of a mean or when generating
+# a boxplot
+p4 <- dat%>%
   ggplot(aes(x = continent,y = gdpPercap,color = continent))+
   geom_boxplot()+
-  geom_point(alpha = 1/2)+
-#  geom_jitter()
-#  scale_color_manual(values=c("#00BA38", "#E7B800"))+
-  ylab("GDP per Capita")+
-#  facet_wrap( ~ Macro,nrow=1, scales="free")+
-  theme_bw()
- 
-   theme( axis.text.x = element_blank(),
-         axis.title.x = element_blank(),
-         legend.title = element_blank(),
-         panel.grid.major.x = element_blank(), 
-         panel.grid.minor.x = element_blank(),
-         panel.grid.major.y = element_blank(),
-         panel.grid.minor.y = element_blank(),
-         axis.title = element_text(size=14),
-         axis.text = element_text(size=14),
-         strip.text.x = element_text(size = 14,face= "bold"),
-         legend.background = element_rect(fill="gray93"),
-         panel.background = element_rect(fill="white"),
-         plot.background  = element_rect(fill="gray93"))
+  geom_jitter()+
+  ylab("GDP per Capita")
+  
+  
 
-#------------------ERROR-BARS--------------------------------------------------
+#----------------------------------------------------------------------
+# Multiple graphs
+#----------------------------------------------------------------------
 
+# to create multiple plots we call on the FACET command. There are 
+# two options:
+# facet_grid
+# facer_wrap
 
+p5 <- dat%>%
+  ggplot(aes(x = lifeExp,y = gdpPercap,color = continent))+
+  geom_point()+
+  facet_grid(~continent)+
+  ylab("GDP per Capita")
+  
+p6 <- dat%>%
+  ggplot(aes(x = lifeExp,y = gdpPercap,color = continent))+
+  geom_point()+
+  facet_wrap(~continent)+
+  ylab("GDP per Capita")
 
+#---------------------------------------------------
+# Saving your plots
+#---------------------------------------------------
+  
+# There are different ways to do it, I like to use the
+# the command from the cowplot package
 
-#------------------MULTIPLE-PLOTS----------------------------------------------
-
-
-
-
-
-#-----------------SAVING-PLOTS
 library(cowplot)
-plot <-plot_grid(p6,p1,p2,p3,p5,p4,align = "v",nrow=6)
+plot <-plot_grid(p1, p3,align = "h",nrow = 2)
 
-save_plot (filename="Cu_effects-metallome.tiff", plot= plot, base_height= 6, base_width=5)
-
+save_plot (filename="Gapminder.tiff", plot = plot, base_height= 6, base_width=5)
+plot
